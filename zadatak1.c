@@ -13,8 +13,8 @@ typedef struct _Stud {
 } student;
 
 
-int BrStud(char*);          //Racuna broj studenata
-double relativni_bodovi(double, double);    //Racuna relativne bodove
+int BrojStudenata(char*);          //Racuna broj studenata
+double RelativniBodovi(double, double);    //Racuna relativne bodove
 
 int main()
 {
@@ -33,9 +33,9 @@ int main()
     printf("\nUnesite naziv datoteke koju zelite procitati:\t");
     scanf(" %s", &dat);
 
-    br_Stud = BrStud(dat);
+    br_Stud = BrojStudenata(dat);
 
-    printf("\nUkupan broj studenata je %d\n\n", br_Stud);
+    printf("\nUkupan broj studenata je %d\n", br_Stud);
 
     fp = fopen(dat, "r");
     s = (student*)malloc(br_Stud * sizeof(student));
@@ -58,7 +58,7 @@ int main()
     for (i = 0; i < br_Stud; i++)
     {
         double rel_bod = 0.0;
-        rel_bod = relativni_bodovi(s[i].bodovi, max_bodovi);
+        rel_bod = RelativniBodovi(s[i].bodovi, max_bodovi);
         printf("\n%-25s %-25s %-25.2lf %-25.2lf ", s[i].ime, s[i].prezime, s[i].bodovi, rel_bod);
     }
 
@@ -69,13 +69,14 @@ int main()
     return 0;
 }
 
-int BrStud(char* dat)
+int BrojStudenata(char* dat)
 {
     int br = 0;
     char red[MAX] = { 0 };      //inicijaliziraj opet sve
     FILE* fp = NULL;
 
     fp = fopen(dat, "r");
+
     if (fp == NULL)
     {
         printf("\nGreska pri otvaranju datoteke -> %s\n", dat);
@@ -84,20 +85,13 @@ int BrStud(char* dat)
     while (!feof(fp))
     {
         fgets(red, MAX, fp);
-        if (*red == '\n')           //zanemaruje mogucih praznih x redaka do kraja datoteke
-        {
-            continue;
-        }
-        else
-        {
-            br++;
-        }
+       
     }
     fclose(fp);    //napisi funkciju za zatvaranje datoteke cim je otvoris
 
     return br;
 }
-double relativni_bodovi(double x, double y)
+double RelativniBodovi(double x, double y)
 {
     double bod = 0.0;
 
