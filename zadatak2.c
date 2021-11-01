@@ -17,7 +17,7 @@ int UnosKraj(osoba*);
 osoba* PronadiZadnji(osoba*);
 osoba* PronadiPrezime(osoba* ,char*);
 osoba* PronadiPrethodni(osoba*, osoba*);
-int ObrisiElement(osoba* ,char*);
+int ObrisiElement(osoba* ,osoba*);
 
 
 int main(){
@@ -172,7 +172,7 @@ osoba* PronadiPrezime(osoba* head ,char* prezime)
     return p;
 }
 
-int ObrisiElement(osoba* head, char* element)
+int ObrisiElement(osoba* head, osoba* element)
 {
     osoba* p = NULL;
     osoba* q = NULL;
