@@ -36,7 +36,7 @@ int main(){
 
     int odabir;
 
-    char prezime[MAX];
+    char tmpprezime[MAX];
     osoba* nadi_prezime = NULL;
     nadi_prezime = (osoba*)malloc(sizeof(osoba));
 
@@ -90,8 +90,8 @@ int main(){
          }
         else if(odabir == 4){
                 printf("Koje prezime zelize pronaci: ");
-                scanf("%s", prezime);
-                nadi_prezime = PronadiPrezime(head, prezime);
+                scanf("%s", tmpprezime);
+                nadi_prezime = PronadiPrezime(head, tmpprezime);
                 printf("Osoba koju ste trazili:\n Ime: %s \nPrezime: %s\nGodina rodenja: %d\n", nadi_prezime->ime, nadi_prezime->prezime, nadi_prezime->godina);
                 break;
         }
@@ -208,11 +208,11 @@ osoba* PronadiZadnji(osoba* head)
     return p;
 }
 
-osoba* PronadiPrezime(osoba* head ,char* prezime)
+osoba* PronadiPrezime(osoba* head ,char* tmpprezime)
 {
     osoba* p = head->next;
 
-    while(p != NULL && strcmp(p->prezime,prezime))
+    while(p != NULL && strcmp(p->prezime, tmpprezime))
         p = p->next;
     
     return p;
@@ -278,7 +278,7 @@ int DodajIspredElementa(osoba* head, osoba* element)
     osoba* p;
     p = (osoba*)malloc(sizeof(osoba));
 
-    p = PronadiPrezime(head, element);
+    p = PronadiPrezime(head, element->prezime);
 
     printf("Unesite podatke: \n");
     printf("Ime: ");
